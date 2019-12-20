@@ -35,7 +35,8 @@ def save_picture(form_picture):
 @app.route("/")
 @app.route("/home")
 def home():
-    posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', posts=posts)
 
 
@@ -54,8 +55,8 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password,
-                    post_index=form.post_index.data, address=form.address.data, city=form.city.data,
-                    blood_group=form.blood_group.data)
+                    phone=form.phone.data, post_index=form.post_index.data, address=form.address.data,
+                    city=form.city.data, blood_group=form.blood_group.data)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in.', 'success')
@@ -97,6 +98,7 @@ def account():
         current_user.username = form.username.data
         current_user.email = form.email.data
         current_user.about = form.about.data
+        current_user.phone = form.phone.data
         current_user.post_index = form.post_index.data
         current_user.address = form.address.data
         current_user.city = form.city.data
@@ -108,6 +110,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
         form.about.data = current_user.about
+        form.phone.data = current_user.phone
         form.post_index.data = current_user.post_index
         form.address.data = current_user.address
         form.city.data = current_user.city
@@ -120,12 +123,9 @@ def account():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'},
-        {'author': user, 'body': 'Test post #3'}
-    ]
-    return render_template('user.html', user=user, posts=posts)
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(user_id=user.id).paginate(page, 10, False)
+    return render_template('user.html', user=user, posts=posts.items)
 
 
 @app.before_request

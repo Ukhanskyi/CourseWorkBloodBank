@@ -8,6 +8,11 @@
     			<p class="text-secondary">{{ current_user.email }}</p>
                 <p class="text-secondary">About me: {{ current_user.about }}</p>
                 <p class="text-secondary">Last seen on: {{ current_user.last__seen }}</p>
+                <p class="text-secondary">Phone number: {{ current_user.phone }}</p>
+                <p class="text-secondary">Post index: {{ current_user.post_index }}</p>
+                <p class="text-secondary">Address: {{ current_user.address }}</p>
+                <p class="text-secondary">City: {{ current_user.city }}</p>
+                <p class="text-secondary">Blood group: {{ current_user.blood_group }}</p>
         </div>
    	</div>
    	 <div class="content-section">
@@ -15,6 +20,7 @@
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
                     {% if form.username.errors %}
@@ -41,6 +47,9 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                </div>
+
+                <div class="form-group">
                 <div class="form-group">
                     {{ form.about.label(class="form-control-label") }}
                     {% if form.about.errors %}
@@ -52,6 +61,20 @@
                         </div>
                     {% else %}
                         {{ form.about(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
 
@@ -100,8 +123,9 @@
                 <div class="form-group">
                         {{ form.blood_group(class='btn btn-danger dropdown-toggle') }}
                 </div>
+                </div>
 
-
+                <div class="form-group">
                 <div class="form-group">
                     {{ form.old_pass.label(class="form-control-label") }}
                     {% if form.old_pass.errors %}
@@ -149,6 +173,7 @@
                 			<span class="text-danger">{{ error }}</span></br>
                 		{% endfor %}
                 	{% endif %}
+                </div>
                 </div>
             </fieldset>
             <div class="form-group">

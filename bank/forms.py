@@ -8,22 +8,23 @@ from bank.models import User
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    post_index = IntegerField('Post index', validators=[DataRequired()])
-    address = StringField('Address', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
-    blood_group = SelectField('Blood group', [DataRequired()], default='1', choices=[
-        ('first_positive', 'O-'),
-        ('first_negative', 'O+'),
-        ('second_positive', 'A-'),
-        ('second_negative', 'A+'),
-        ('third_positive', 'B-'),
-        ('third_negative', 'B+'),
-        ('fourth_positive', 'AB-'),
-        ('fourth_negative', 'AB+'),
+    username = StringField('Username *', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email *', validators=[DataRequired(), Email()])
+    password = PasswordField('Password *', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password *', validators=[DataRequired(), EqualTo('password')])
+    phone = IntegerField('Phone number * ', validators=[DataRequired()])
+    post_index = IntegerField('Post index * ', validators=[DataRequired()])
+    address = StringField('Address')
+    city = StringField('City')
+    blood_group = SelectField('Blood group *', [DataRequired()], default='1', choices=[
+        ('O-', 'O-'),
+        ('O+', 'O+'),
+        ('A-', 'A-'),
+        ('A+', 'A+'),
+        ('B-', 'B-'),
+        ('B+', 'B+'),
+        ('AB-', 'AB-'),
+        ('AB+', 'AB+'),
     ])
     submit = SubmitField('Sign up')
 
@@ -45,25 +46,26 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    username = StringField('Username * ', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email * ', validators=[DataRequired(), Email()])
     about = TextAreaField('About Me')
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     old_pass = PasswordField('Old password')
     new_pass = PasswordField('New password')
     confirm_pass = PasswordField('Confirm password', validators=[EqualTo('new_pass')])
-    post_index = IntegerField('Post index', validators=[DataRequired()])
-    address = StringField('Address', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
-    blood_group = SelectField('Blood group', [DataRequired()], default='1', choices=[
-        ('first_positive', 'O-'),
-        ('first_negative', 'O+'),
-        ('second_positive', 'A-'),
-        ('second_negative', 'A+'),
-        ('third_positive', 'B-'),
-        ('third_negative', 'B+'),
-        ('fourth_positive', 'AB-'),
-        ('fourth_negative', 'AB+'),
+    phone = IntegerField('Phone number * ', validators=[DataRequired()])
+    post_index = IntegerField('Post index * ', validators=[DataRequired()])
+    address = StringField('Address * ', validators=[DataRequired()])
+    city = StringField('City * ', validators=[DataRequired()])
+    blood_group = SelectField('Blood group * ', [DataRequired()], default='1', choices=[
+        ('O-', 'O-'),
+        ('O+', 'O+'),
+        ('A-', 'A-'),
+        ('A+', 'A+'),
+        ('B-', 'B-'),
+        ('B+', 'B+'),
+        ('AB-', 'AB-'),
+        ('AB+', 'AB+'),
     ])
     submit = SubmitField('Update')
 
