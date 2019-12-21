@@ -83,3 +83,20 @@ a.article-title:hover {
   position: absolute;
   right: 0;
 }
+
+.my_card {
+  height: 80px;
+  margin: 5px 5px 5px 5px;
+}
+.my_head_text{
+  margin-top: -6px;
+  font-size: 15px;
+}
+
+.my_main_text{
+  margin-top: -10px;
+}
+
+.my_header {
+  height: 30px;
+}

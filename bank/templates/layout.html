@@ -33,6 +33,7 @@
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
                   <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                  <a class="nav-item nav-link" href="{{ url_for('new_donate') }}">New Donate</a>
                   <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                   <a class="nav-item nav-link" href="{{ url_for('user', username=current_user.username) }}">Profile</a>
                   <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -61,16 +62,70 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
+          <div class="content-section border-dark">
+            <h3>Blood Sidebar</h3>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ total_blood }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total O- Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ o_neg }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total O+ Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ o_pos }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total A- Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ a_neg }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total A+ Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller' >{{ a_pos }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total B- Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ b_neg }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total B+ Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller' >{{ b_pos }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total AB- Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller'>{{ ab_neg }}</span> pints</h5>
+                  </div>
+              </div>
+              <div class="card border-dark text-center my_card">
+                  <div class="card-header my_header"><p class="my_head_text">Total AB+ Blood in Blood bank</p></div>
+                  <div class="card-body text-danger">
+                    <h5 class="card-title my_main_text"><span class='numscroller' >{{ ab_pos }}</span> pints</h5>
+                  </div>
+              </div>
+{#            <p class='text-muted'>You can put any information here you'd like.#}
+{#              <ul class="list-group">#}
+{#                <li class="list-group-item list-group-item-light">Latest Posts</li>#}
+{#                <li class="list-group-item list-group-item-light">Announcements</li>#}
+{#                <li class="list-group-item list-group-item-light">Calendars</li>#}
+{#                <li class="list-group-item list-group-item-light">etc</li>#}
+{#              </ul>#}
+{#            </p>#}
           </div>
         </div>
       </div>

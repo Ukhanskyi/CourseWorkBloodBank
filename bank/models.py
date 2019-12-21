@@ -29,6 +29,7 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.Integer(), unique=True,)
     about = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    donates = db.relationship('Donate', backref='author', lazy=True)
     followed = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
@@ -78,3 +79,14 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+
+class Donate(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_blood = db.Column(db.String(10), nullable=False)
+    quantity = db.Column(db.Integer(), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Donate('{self.name_blood}', '{self.quantity}', '{self.date_posted}')"

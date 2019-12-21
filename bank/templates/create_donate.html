@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section border-dark">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group ">
+            <legend class="border-bottom border-dark mb-4">{{ legend }}</legend>
+
+                <div class="form-group border-dark">
+                        {{ form.name_blood(class='btn btn-dark dropdown-toggle') }}
+                </div>
+
+                <div class="form-group border-dark">
+                    {{ form.quantity.label(class="form-control-label") }}
+                    {% if form.quantity.errors %}
+                        {{ form.quantity(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.quantity.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.quantity(class="form-control border-dark form-control-lg") }}
+                    {% endif %}
+                </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-dark") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

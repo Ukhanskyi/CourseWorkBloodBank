@@ -88,6 +88,21 @@ class PostForm(FlaskForm):
     submit = SubmitField('Post')
 
 
+class DonateForm(FlaskForm):
+    name_blood = SelectField('Blood group * ', [DataRequired()], default='1', choices=[
+        ('O-', 'O-'),
+        ('O+', 'O+'),
+        ('A-', 'A-'),
+        ('A+', 'A+'),
+        ('B-', 'B-'),
+        ('B+', 'B+'),
+        ('AB-', 'AB-'),
+        ('AB+', 'AB+'),
+    ])
+    quantity = IntegerField('Quantity on pints', validators=[DataRequired()])
+    submit = SubmitField('Donate')
+
+
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about = TextAreaField('About me', validators=[Length(min=0, max=140)])

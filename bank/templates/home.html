@@ -13,6 +13,20 @@
           </div>
         </article>
     {% endfor %}
+    {% for donate in donates.items %}
+        <article class="media content-section">
+          <img class="rounded-circle account-img" src="{{ url_for('static', filename='images/' + donate.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="user/{{ donate.author.username }}">{{ donate.author.username }}</a>
+              <small class="text-muted">{{ donate.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-name_blood" href="{{ url_for('donate', donate_id=donate.id) }}">I donate you {{ donate.name_blood }}</a></h2>
+            <p class="article-quantity">{{ donate.quantity }} pint(s) of blood</p>
+          </div>
+        </article>
+
+    {% endfor %}
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if posts.page == page_num %}
