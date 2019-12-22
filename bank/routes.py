@@ -161,7 +161,6 @@ def user(username):
 
 
 @app.before_request
-@login_required
 def before_request():
     if current_user.is_authenticated:
         current_user.last__seen = datetime.utcnow()
